@@ -1,32 +1,42 @@
-﻿Random random = new Random();
-int nSecreto = random.Next(1, 100);
-int intentos = 0;
+﻿int opcion, nfactorial;
+double nRaiz, rRaiz;
 
-Console.WriteLine("Bienvenido al juego de adivinar un número secreto entre 1 y 100.");
-
-while (true)
+do
 {
-    Console.Write("Introduce tu suposición: ");
-    if (!int.TryParse(Console.ReadLine(), out int nUsuario))
+    Console.WriteLine("Ingresa el numero de la opcion que desea");
+    Console.WriteLine("1. Calcular el factorial de un numero ");
+    Console.WriteLine("2. Calcular la raiz cuadrada de un numero ");
+    Console.WriteLine("3. Salir ");
+    opcion = int.Parse(Console.ReadLine());
+    switch (opcion)
     {
-        Console.WriteLine("Entrada inválida. Por favor, ingrese un número válido.");
-        continue;
+        case 1:
+            Console.WriteLine("Ingrese el numero que desea ");
+            nfactorial = int.Parse(Console.ReadLine());
+
+            int factorial = 1;
+
+            for (int i = 1; i <= nfactorial; i++)
+            {
+                factorial *= i;
+            }
+            Console.WriteLine("El resultado es: " + factorial);
+
+            break;
+        case 2:
+            Console.WriteLine("Ingrese el numero que desea");
+            nRaiz = double.Parse(Console.ReadLine());
+            rRaiz = Math.Sqrt(nRaiz);
+            Console.WriteLine("La raiz es: " + rRaiz);
+            break;
+        case 3:
+            Console.WriteLine("Saliendo del programa...");
+            break;
+        default:
+            Console.WriteLine("El número ingresado no esta disponible actualmente.");
+            break;
+
+
     }
 
-    intentos++;
-
-    if (nUsuario < nSecreto)
-    {
-        Console.WriteLine("El numero es mayor que tu suposición.");
-    }
-    else if (nUsuario > nSecreto)
-    {
-        Console.WriteLine("El numero es menor que tu suposición.");
-    }
-    else
-    {
-        Console.WriteLine($"Has adivinado el número {nUsuario}");
-        break;
-    }
-}
-
+} while (opcion != 3);
